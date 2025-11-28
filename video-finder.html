@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Finder - Cat Species Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .preview-section {
+            margin-top: 30px;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .instructions {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .cat-breeds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .breed-chip {
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .breed-chip:hover {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Finder Helper</h1>
+        <p class="subtitle">Find and test YouTube videos for your Cat Species Gallery</p>
+
+        <div class="instructions">
+            <h3>How to Find Cat Videos:</h3>
+            <ol>
+                <li>Click on a cat breed below or go to <strong>youtube.com</strong></li>
+                <li>Search for the cat breed (e.g., "Maine Coon cat cute")</li>
+                <li>Find a video you like and click on it</li>
+                <li>Copy the <strong>Video ID</strong> from the URL:
+                    <br>youtube.com/watch?v=<strong style="color: #667eea;">VIDEO_ID_HERE</strong>
+                </li>
+                <li>Paste the Video ID below to test if it works</li>
+            </ol>
+        </div>
+
+        <div class="cat-breeds">
+            <div class="breed-chip" onclick="searchYouTube('Maine Coon cat')">Maine Coon</div>
+            <div class="breed-chip" onclick="searchYouTube('Persian cat')">Persian Cat</div>
+            <div class="breed-chip" onclick="searchYouTube('Siamese cat')">Siamese Cat</div>
+            <div class="breed-chip" onclick="searchYouTube('Bengal cat')">Bengal Cat</div>
+            <div class="breed-chip" onclick="searchYouTube('Ragdoll cat')">Ragdoll Cat</div>
+            <div class="breed-chip" onclick="searchYouTube('Scottish Fold cat')">Scottish Fold</div>
+        </div>
+
+        <div class="search-section">
+            <h3 style="margin: 20px 0 10px 0; color: #333;">Test Video ID:</h3>
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="videoIdInput"
+                    placeholder="Paste YouTube Video ID here (e.g., dQw4w9WgXcQ)"
+                >
+                <button onclick="testVideo()">Test Video</button>
+            </div>
+        </div>
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <h3 style="color: #333; margin-bottom: 15px;">Video Preview:</h3>
+            <iframe
+                id="videoPreview"
+                class="video-preview"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+            <div class="success-message" id="successMessage">
+                ✓ Video loads successfully! You can use this Video ID.
+            </div>
+
+            <div class="code-box" id="codeBox"></div>
+        </div>
+    </div>
+
+    <script>
+        function searchYouTube(query) {
+            const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+            window.open(searchUrl, '_blank');
+        }
+
+        function testVideo() {
+            const videoId = document.getElementById('videoIdInput').value.trim();
+
+            if (!videoId) {
+                alert('Please enter a Video ID');
+                return;
+            }
+
+            // Show preview section
+            document.getElementById('previewSection').style.display = 'block';
+
+            // Update iframe
+            const iframe = document.getElementById('videoPreview');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1`;
+
+            // Show success message
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+            }, 1000);
+
+            // Show code snippet
+            const codeBox = document.getElementById('codeBox');
+            codeBox.innerHTML = `<strong>Copy this Video ID to script.js:</strong><br><br>video: "${videoId}"`;
+        }
+
+        // Allow Enter key to test video
+        document.getElementById('videoIdInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                testVideo();
+            }
+        });
+    </script>
+</body>
+</html>

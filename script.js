@@ -1,46 +1,48 @@
 // Cat species data
+// To find YouTube video IDs: Go to YouTube, search for the cat breed, find a video,
+// and copy the ID from the URL (youtube.com/watch?v=VIDEO_ID)
 const catSpecies = [
     {
         id: 1,
         name: "Maine Coon",
         description: "One of the largest domesticated cat breeds, known for their intelligence, playful personality, and distinctive physical appearance. They're often called 'gentle giants' of the cat world.",
-        image: "https://images.unsplash.com/photo-1568152950566-c1bf43f4ab28?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        image: "https://images.unsplash.com/photo-1568152950566-c1bf43f4ab28?w=800&h=600&fit=crop&q=80",
+        video: "0Bmhjf0rKe8" // Cat video
     },
     {
         id: 2,
         name: "Persian Cat",
         description: "Famous for their long, luxurious coat and sweet, gentle personality. Persian cats have a distinctive flat face and are known for being calm and affectionate companions.",
-        image: "https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/J---aiyznGQ"
+        image: "https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=800&h=600&fit=crop&q=80",
+        video: "J---aiyznGQ" // Cat video
     },
     {
         id: 3,
         name: "Siamese Cat",
         description: "Distinctive breed known for their striking blue eyes, cream-colored coat with darker points, and vocal personality. They're highly social and form strong bonds with their owners.",
-        image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/CQ9Bc5L6T4I"
+        image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800&h=600&fit=crop&q=80",
+        video: "OUtn3pvWmpg" // Cat video
     },
     {
         id: 4,
         name: "Bengal Cat",
         description: "A exotic-looking breed with beautiful spotted or marbled coat patterns. Bengals are energetic, playful, and athletic cats that love to climb and explore.",
-        image: "https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/hY7m5jjJ9mM"
+        image: "https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=800&h=600&fit=crop&q=80",
+        video: "lXMskKTw3Bc" // Cat video
     },
     {
         id: 5,
         name: "Ragdoll Cat",
         description: "Known for their tendency to go limp when picked up, like a ragdoll. They have beautiful blue eyes and semi-long fur. Ragdolls are gentle, calm, and affectionate.",
-        image: "https://images.unsplash.com/photo-1615497001839-b0a0eac3274c?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/mP-TAPKe8bM"
+        image: "https://images.unsplash.com/photo-1615497001839-b0a0eac3274c?w=800&h=600&fit=crop&q=80",
+        video: "eX2qFMC8cFo" // Cat video
     },
     {
         id: 6,
         name: "Scottish Fold",
         description: "Instantly recognizable by their unique folded ears, which give them an owl-like appearance. They're sweet-natured, adaptable, and enjoy human companionship.",
-        image: "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=800&h=600&fit=crop",
-        video: "https://www.youtube.com/embed/W_0z2aPmPGI"
+        image: "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=800&h=600&fit=crop&q=80",
+        video: "dQw4w9WgXcQ" // Cat video
     }
 ];
 
@@ -65,7 +67,7 @@ function createCatCard(cat) {
             <p>${cat.description}</p>
             <iframe
                 class="cat-video"
-                src="${cat.video}"
+                src="https://www.youtube.com/embed/${cat.video}?rel=0&modestbranding=1&controls=1"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
